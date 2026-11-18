@@ -1,0 +1,6 @@
+# O que o `railway up` não envia.
+node_modules/
+dist/
+.env
+.env.*
+.DS_Store

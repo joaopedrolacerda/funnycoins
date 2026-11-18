@@ -1,0 +1,27 @@
+# O Railway define PORT. Localmente, usa 8080.
+{
+	admin off
+}
+
+:{$PORT:8080} {
+	encode zstd gzip
+
+	# Verificação de saúde do Railway.
+	handle /health {
+		respond "ok" 200
+	}
+
+	handle {
+		root * /srv
+
+		# Arquivos com hash no nome podem ficar em cache para sempre. O resto, nunca.
+		@assets path /assets/*
+		header @assets Cache-Control "public, max-age=31536000, immutable"
+		@pages not path /assets/*
+		header @pages Cache-Control "no-cache"
+
+		# Caminhos que não são arquivos devolvem o index.html.
+		try_files {path} /index.html
+		file_server
+	}
+}

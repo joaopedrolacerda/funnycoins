@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "description": "Casos de teste das regras do jogo, compartilhados entre o app (Swift) e o backend e o site (Rust). Datas são dias do calendário, interpretados ao meio-dia no fuso local. Dinheiro em centavos.",
+  "cases": [
+    {
+      "name": "começo do jogo",
+      "now": "2026-10-15",
+      "profile": { "monthlyEssentialCostCents": 100000, "targetMonths": 6, "investPercent": 10 },
+      "entries": [],
+      "bills": [],
+      "reserveMovements": [],
+      "investments": [],
+      "expected": {
+        "reserveGoalCents": 600000,
+        "reserveBalanceCents": 0,
+        "reserveProgress": 0,
+        "currentLevel": 1,
+        "xp": 0,
+        "rank": "Aprendiz",
+        "achievements": [],
+        "petStage": "egg",
+        "petMood": "hungry"
+      }
+    },
+    {
+      "name": "meio caminho da reserva",
+      "now": "2026-10-15",
+      "profile": { "monthlyEssentialCostCents": 100000, "targetMonths": 6, "investPercent": 10 },
+      "entries": [
+        { "category": "salary", "amountCents": 500000, "date": "2026-10-15" }
+      ],
+      "bills": [],
+      "reserveMovements": [
+        { "amountCents": 300000, "date": "2026-10-15" }
+      ],
+      "investments": [],
+      "expected": {
+        "reserveGoalCents": 600000,
+        "reserveBalanceCents": 300000,
+        "reserveProgress": 0.5,
+        "currentLevel": 1,
+        "xp": 325,
+        "rank": "Poupador",
+        "achievements": ["first-entry", "reserve-25", "reserve-50"],
+        "petStage": "young",
+        "petMood": "happy"
+      }
+    },
+    {
+      "name": "conta atrasada",
+      "now": "2026-10-15",
+      "profile": { "monthlyEssentialCostCents": 100000, "targetMonths": 6, "investPercent": 10 },
+      "entries": [
+        { "category": "salary", "amountCents": 100000, "date": "2026-10-15" }
+      ],
+      "bills": [
+        { "name": "Internet", "amountCents": 10000, "dueDay": 10, "paidMonths": [] }
+      ],
+      "reserveMovements": [],
+      "investments": [],
+      "expected": {
+        "reserveGoalCents": 600000,
+        "reserveBalanceCents": 0,
+        "reserveProgress": 0,
+        "currentLevel": 1,
+        "xp": 105,
+        "rank": "Aprendiz",
+        "achievements": ["first-entry"],
+        "petStage": "baby",
+        "petMood": "sick"
+      }
+    },
+    {
+      "name": "contas em dia e meta do mês",
+      "now": "2026-10-15",
+      "profile": { "monthlyEssentialCostCents": 100000, "targetMonths": 6, "investPercent": 10 },
+      "entries": [
+        { "category": "salary", "amountCents": 300000, "date": "2026-10-15" }
+      ],
+      "bills": [
+        { "name": "Luz", "amountCents": 20000, "dueDay": 10, "paidMonths": ["2026-10"] }
+      ],
+      "reserveMovements": [
+        { "amountCents": 600000, "date": "2026-10-15" }
+      ],
+      "investments": [
+        { "modality": "cdb", "amountCents": 30000, "date": "2026-10-15" }
+      ],
+      "expected": {
+        "reserveGoalCents": 600000,
+        "reserveBalanceCents": 600000,
+        "reserveProgress": 1,
+        "currentLevel": 2,
+        "xp": 770,
+        "rank": "Estrategista",
+        "achievements": ["first-entry", "bills-ok", "reserve-25", "reserve-50", "reserve-100", "first-investment", "monthly-goal"],
+        "petStage": "adult",
+        "petMood": "happy"
+      }
+    },
+    {
+      "name": "lendário com cursos",
+      "now": "2026-10-15",
+      "profile": { "monthlyEssentialCostCents": 100000, "targetMonths": 6, "investPercent": 10 },
+      "entries": [
+        { "category": "salary", "amountCents": 500000, "date": "2026-10-15" }
+      ],
+      "bills": [],
+      "reserveMovements": [
+        { "amountCents": 600000, "date": "2026-10-15" }
+      ],
+      "investments": [
+        { "modality": "cdb", "amountCents": 10000, "date": "2026-10-15" },
+        { "modality": "fii", "amountCents": 10000, "date": "2026-10-15" },
+        { "modality": "education", "amountCents": 10000, "date": "2026-10-15" }
+      ],
+      "expected": {
+        "reserveGoalCents": 600000,
+        "reserveBalanceCents": 600000,
+        "reserveProgress": 1,
+        "currentLevel": 2,
+        "xp": 715,
+        "rank": "Estrategista",
+        "achievements": ["first-entry", "reserve-25", "reserve-50", "reserve-100", "first-investment", "diversified"],
+        "petStage": "legend",
+        "petMood": "happy"
+      }
+    }
+  ]
+}

@@ -22,7 +22,7 @@ interface FixtureCase extends GameInput {
 }
 
 const fixtures: FixtureCase[] = JSON.parse(
-  readFileSync(new URL('../../../MyAppTests/Fixtures/rules-fixtures.json', import.meta.url), 'utf8'),
+  readFileSync(new URL('../../fixtures/rules-fixtures.json', import.meta.url), 'utf8'),
 ).cases;
 
 describe('regras em WebAssembly', () => {

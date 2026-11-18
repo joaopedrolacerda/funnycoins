@@ -4,7 +4,6 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "rules": "cd ../rust && wasm-pack build rules --release --target web --out-dir ../../web/src/lib/rules/pkg --out-name rules --no-pack -- --features wasm",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
